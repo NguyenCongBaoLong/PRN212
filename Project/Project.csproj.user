@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Control\CustomerManagementControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Control\InputManagementControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Control\ObjectManagementControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Control\OutputManagementControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Control\SupplierManagementControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Control\UnitManagementControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Control\UserManagementControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\AdminWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\LoginWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="View\ManagerWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Control\CustomerManagementControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Control\InputManagementControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Control\ObjectManagementControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Control\OutputManagementControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Control\SupplierManagementControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Control\UnitManagementControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Control\UserManagementControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\AdminWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="View\ManagerWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,68 @@
+﻿<Window x:Class="Project.View.ManagerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Project.View"
+        mc:Ignorable="d"
+        Title="Hệ thống Quản lý Kho hàng - Manager" Height="600" Width="1000">
+    <Window.Resources>
+        <Style x:Key="SidebarButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="15,0,0,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#3E3E40"/>
+                    <Setter Property="Foreground" Value="#007ACC"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#007ACC"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Background="#2D2D30" VerticalAlignment="Stretch">
+            <TextBlock Text="Menu Quản Lý Kho" Foreground="White" FontSize="20" FontWeight="Bold" Margin="15,20,15,10" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" />
+            <Rectangle Height="1" Fill="#5A5A5A" Margin="10,0,10,15"/>
+
+            <Button Content="Quản lý Nhập Kho" Name="btnManageInput" Style="{StaticResource SidebarButton}" Margin="10,5" Height="45" />
+            <Button Content="Quản lý Xuất Kho" Name="btnManageOutput" Style="{StaticResource SidebarButton}" Margin="10,5" Height="45" />
+            <Button Content="Quản lý Vật tư" Name="btnManageObjects" Style="{StaticResource SidebarButton}" Margin="10,5" Height="45" />
+            <Button Content="Quản lý Đơn vị đo" Name="btnManageUnits" Style="{StaticResource SidebarButton}" Margin="10,5" Height="45" />
+            <Button Content="Quản lý Nhà cung cấp" Name="btnManageSuppliers" Style="{StaticResource SidebarButton}" Margin="10,5" Height="45" />
+            <Button Content="Quản lý Khách hàng" Name="btnManageCustomers" Style="{StaticResource SidebarButton}" Margin="10,5" Height="45" />
+
+            <Border BorderBrush="#5A5A5A" BorderThickness="0,1,0,0" Margin="10,20,10,10" Padding="0,10,0,0">
+                <Button Content="Đăng xuất" Name="btnLogout" Margin="0,5" Height="45" Foreground="Red" />
+            </Border>
+        </StackPanel>
+
+        <ContentControl Grid.Column="1" Name="contentArea" Background="#F0F0F0" />
+    </Grid>
+</Window>

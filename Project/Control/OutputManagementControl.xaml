@@ -1,0 +1,105 @@
+﻿<UserControl x:Class="Project.Control.OutputManagementControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Project.Control"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="900">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Quản lý Xuất Kho" FontSize="24" FontWeight="Bold" Margin="0,0,0,15"/>
+
+        <DataGrid Grid.Row="1" 
+                  x:Name="dgOutputDetails" 
+                  AutoGenerateColumns="False" 
+                  IsReadOnly="True" 
+                  HeadersVisibility="Column"
+                  SelectionMode="Single"
+                  Margin="0,0,0,15"
+                  SelectionChanged="dgOutputDetails_SelectionChanged"
+                   >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="Auto"/>
+
+                <DataGridTextColumn Header="Vật tư" Binding="{Binding IdObjectNavigation.DisplayName}" Width="*"/>
+
+                <DataGridTemplateColumn Header="Ngày xuất" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding IdOutputNavigation.DateOutput, StringFormat='dd/MM/yyyy'}" VerticalAlignment="Center"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn Header="Số lượng" Binding="{Binding Count}" Width="Auto"/>
+
+                <DataGridTextColumn Header="Giá xuất" Binding="{Binding OutputPrice, StringFormat='{}{0:N0} đ'}" Width="Auto"/>
+
+                <DataGridTextColumn Header="Khách hàng" Binding="{Binding IdCustomerNavigation.DisplayName}" Width="*"/>
+
+                <DataGridTextColumn Header="Trạng thái xuất" Binding="{Binding Status}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Border Grid.Row="2" BorderBrush="#CCCCCC" BorderThickness="1" CornerRadius="5" Padding="15" Background="White">
+            <StackPanel Orientation="Vertical">
+                <Grid Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <ComboBox Grid.Column="0" x:Name="cmbObject" 
+                              DisplayMemberPath="DisplayName"
+                              SelectedValuePath="Id"
+                              ToolTip="Chọn vật tư" Margin="0,0,10,0"
+                               />
+
+                    <DatePicker Grid.Column="1" x:Name="dpDateOutput" 
+                                 d:SelectedDate="2024-07-23" Margin="0,0,10,0"
+                                 ToolTip="Ngày xuất kho" />
+
+                    <TextBox Grid.Column="2" x:Name="txtCount" 
+                             d:Text="Số lượng" ToolTip="Số lượng xuất" Margin="0,0,10,0" 
+                             PreviewTextInput="NumberValidationTextBox"/>
+
+                    <TextBox Grid.Column="3" x:Name="txtOutputPrice" 
+                             d:Text="Giá xuất" ToolTip="Giá xuất của vật tư" Margin="0,0,10,0" 
+                             PreviewTextInput="DecimalValidationTextBox"/>
+
+                    <ComboBox Grid.Column="4" x:Name="cmbCustomer" 
+                              DisplayMemberPath="DisplayName"
+                              SelectedValuePath="Id"
+                              ToolTip="Chọn khách hàng" Margin="0,0,10,0"
+                               />
+
+                    <TextBox Grid.Column="5" x:Name="txtStatus" 
+                             d:Text="Trạng thái xuất" ToolTip="Trạng thái của phiếu xuất" 
+                             />
+                </Grid>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Button Content="Thêm" Click="BtnAdd_Click"  Margin="0,0,10,0" />
+                    <Button Content="Sửa" Click="BtnUpdate_Click"  Margin="0,0,10,0" />
+                    <Button Content="Xóa" Click="BtnDelete_Click"  />
+                    <Button Content="Làm mới" Click="BtnClear_Click"  Margin="20,0,0,0" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>

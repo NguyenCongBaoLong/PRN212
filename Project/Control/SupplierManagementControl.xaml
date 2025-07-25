@@ -1,0 +1,105 @@
+﻿<UserControl x:Class="Project.Control.SupplierManagementControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Project.Control"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="900">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Quản lý Nhà cung cấp" FontSize="24" FontWeight="Bold" Margin="0,0,0,15"/>
+
+        <Border Grid.Row="1" BorderBrush="#DDDDDD" BorderThickness="1" CornerRadius="5" Padding="10" Margin="0,0,0,15" Background="#F8F8F8">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Tìm kiếm:" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                <TextBox Grid.Column="1" x:Name="txtSearch" Height="30" VerticalContentAlignment="Center" KeyDown="txtSearch_KeyDown"/>
+                <Button Grid.Column="2" Content="Tìm kiếm" x:Name="btnSearch" Click="BtnSearch_Click" Margin="10,0,0,0" Width="80"/>
+            </Grid>
+        </Border>
+
+        <DataGrid Grid.Row="2" 
+                  x:Name="dgSupplierDetails" 
+                  AutoGenerateColumns="False" 
+                  IsReadOnly="True" 
+                  HeadersVisibility="Column"
+                  SelectionMode="Single"
+                  Margin="0,0,0,15"
+                  SelectionChanged="dgSupplierDetails_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="Auto"/>
+                <DataGridTextColumn Header="Tên nhà cung cấp" Binding="{Binding DisplayName}" Width="*"/>
+                <DataGridTextColumn Header="Địa chỉ" Binding="{Binding Address}" Width="1.5*"/>
+                <DataGridTextColumn Header="Điện thoại" Binding="{Binding Phone}" Width="Auto"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
+                <DataGridTextColumn Header="Thông tin thêm" Binding="{Binding MoreInfo}" Width="*"/>
+                <DataGridTemplateColumn Header="Ngày hợp tác" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding ContractDate, StringFormat='dd/MM/yyyy'}" VerticalAlignment="Center"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Border Grid.Row="3" BorderBrush="#CCCCCC" BorderThickness="1" CornerRadius="5" Padding="15" Background="White">
+            <StackPanel Orientation="Vertical">
+                <Grid Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Tên NCC:" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="txtDisplayName" d:Text="Tên nhà cung cấp" ToolTip="Tên của nhà cung cấp" Margin="0,0,20,5"/>
+
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Địa chỉ:" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                    <TextBox Grid.Row="0" Grid.Column="3" x:Name="txtAddress" d:Text="Địa chỉ" ToolTip="Địa chỉ nhà cung cấp" Margin="0,0,20,5"/>
+
+                    <TextBlock Grid.Row="0" Grid.Column="4" Text="Điện thoại:" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                    <TextBox Grid.Row="0" Grid.Column="5" x:Name="txtPhone" d:Text="Số điện thoại" ToolTip="Số điện thoại nhà cung cấp" PreviewTextInput="NumberValidationTextBox" />
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Email:" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="txtEmail" d:Text="Email" ToolTip="Email nhà cung cấp" Margin="0,0,20,5" />
+
+                    <TextBlock Grid.Row="1" Grid.Column="2" Text="Ngày hợp tác:" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                    <DatePicker Grid.Row="1" Grid.Column="3" x:Name="dpContractDate" 
+                                d:SelectedDate="2024-01-01" ToolTip="Ngày bắt đầu hợp tác" Margin="0,0,20,5" />
+
+                    <TextBlock Grid.Row="1" Grid.Column="4" Text="Thông tin thêm:" VerticalAlignment="Center" Margin="0,0,10,5"/>
+                    <TextBox Grid.Row="1" Grid.Column="5" x:Name="txtMoreInfo" d:Text="Thông tin khác" ToolTip="Thông tin bổ sung" TextWrapping="Wrap" AcceptsReturn="True" Height="40"/>
+
+                </Grid>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,10,0,0">
+                    <Button Content="Thêm" Click="BtnAdd_Click"  Margin="0,0,10,0" />
+                    <Button Content="Sửa" Click="BtnUpdate_Click"  Margin="0,0,10,0" />
+                    <Button Content="Xóa" Click="BtnDelete_Click"  />
+                    <Button Content="Làm mới" Click="BtnClear_Click"  Margin="20,0,0,0" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>
